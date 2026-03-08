@@ -31,10 +31,8 @@ export const ContactSection = () => {
 
     try {
       const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
-      
-      await axios.post(`${backendUrl}/api/status`, {
-        client_name: `${formData.name} - ${formData.email} - ${formData.phone || 'N/A'} - ${formData.practice || 'N/A'} - ${formData.caseVolume || 'N/A'} - ${formData.message || 'N/A'}`
-      });
+
+      await axios.post(`${backendUrl}/api/contact`, formData);
 
       toast.success('Thank you! We\'ll be in touch within 24 hours.');
       setFormData({

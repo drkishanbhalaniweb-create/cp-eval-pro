@@ -5,7 +5,7 @@ import { HeroSection } from '@/components/HeroSection';
 import { ChallengesSection } from '@/components/ChallengesSection';
 import { ServicesSection } from '@/components/ServicesSection';
 import { ProcessSection } from '@/components/ProcessSection';
-import { WhyMaglincSection } from '@/components/WhyMaglincSection';
+import { WhyCPEvalProSection } from '@/components/WhyCPEvalProSection';
 import { PricingSection } from '@/components/PricingSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
@@ -20,7 +20,7 @@ function App() {
         <ChallengesSection />
         <ServicesSection />
         <ProcessSection />
-        <WhyMaglincSection />
+        <WhyCPEvalProSection />
         <PricingSection />
         <ContactSection />
       </main>

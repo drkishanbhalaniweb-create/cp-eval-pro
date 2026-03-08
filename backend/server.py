@@ -37,6 +37,15 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+class ContactSubmission(BaseModel):
+    name: str
+    email: str
+    phone: str = "N/A"
+    practice: str = "N/A"
+    caseVolume: str = "N/A"
+    message: str = "N/A"
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
@@ -51,8 +60,29 @@ async def create_status_check(input: StatusCheckCreate):
     doc = status_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
     
-    _ = await db.status_checks.insert_one(doc)
+    await db.status_checks.insert_one(doc)
     return status_obj
+
+@api_router.post("/contact")
+async def handle_contact_submission(submission: ContactSubmission):
+    doc = submission.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    
+    # Save to database
+    await db.contact_submissions.insert_one(doc)
+    
+    # Email notification logic
+    # In a production environment, you would use an email service (SendGrid, Resend, etc.)
+    # or an SMTP server to send the submission details to contact@cpevalpro.com
+    target_email = "contact@cpevalpro.com"
+    logger.info(f"New contact submission received from {submission.email}. Notification should be sent to {target_email}")
+    
+    # Example email content (pseudo-code):
+    # subject = f"New Lead: {submission.name}"
+    # body = f"Name: {submission.name}\nEmail: {submission.email}\nPhone: {submission.phone}\nPractice: {submission.practice}\nVolume: {submission.caseVolume}\nMessage: {submission.message}"
+    # await send_email(to=target_email, subject=subject, body=body)
+
+    return {"status": "success", "message": "Submission received and logged"}
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():

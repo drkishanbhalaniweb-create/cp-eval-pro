@@ -11,8 +11,8 @@ export const Footer = () => {
           {/* Brand */}
           <div>
             <div className="text-2xl font-bold mb-4">
-              <span className="text-primary-foreground">MAG</span>
-              <span className="text-secondary">LINC</span>
+              <span className="text-primary-foreground">CP EVAL </span>
+              <span className="text-secondary">PRO</span>
             </div>
             <p className="text-sm text-accent-foreground/80 leading-relaxed">
               Comprehensive support for C&P examiners, simplifying medical evaluations
@@ -42,10 +42,10 @@ export const Footer = () => {
               </li>
               <li>
                 <button
-                  onClick={() => document.querySelector('#why-maglinc')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => document.querySelector('#why-cp-eval-pro')?.scrollIntoView({ behavior: 'smooth' })}
                   className="text-accent-foreground/80 hover:text-accent-foreground transition-colors"
                 >
-                  Why MAGLINC
+                  Why CP EVAL PRO
                 </button>
               </li>
               <li>
@@ -75,7 +75,7 @@ export const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-accent-foreground/70">
-          <p>© {currentYear} MAGLINC. All rights reserved.</p>
+          <p>© {currentYear} CP EVAL PRO. All rights reserved.</p>
           <p className="mt-2 md:mt-0">
             Serving those who serve our nation's veterans.
           </p>

@@ -37,7 +37,7 @@ export const ChallengesSection = () => {
   return (
     <section className="py-16 md:py-24 bg-muted/30 relative overflow-hidden">
       {/* Grid Pattern Background */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
           backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
@@ -45,7 +45,7 @@ export const ChallengesSection = () => {
           backgroundSize: '50px 50px'
         }}
       />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
@@ -66,14 +66,14 @@ export const ChallengesSection = () => {
               <Card
                 key={challenge.title}
                 className="group p-8 hover:shadow-hover transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] border-border bg-card relative overflow-hidden"
-                style={{ 
+                style={{
                   animationDelay: `${index * 100}ms`,
                   boxShadow: '0 4px 16px hsl(215 25% 15% / 0.08)'
                 }}
               >
                 {/* Teal accent border on top */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/80 to-primary/60 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                
+
                 <div className="flex flex-col h-full relative z-10">
                   {/* Icon */}
                   <div className="w-16 h-16 rounded-xl bg-primary-light flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-md">
@@ -96,7 +96,7 @@ export const ChallengesSection = () => {
                     <div className="text-sm text-muted-foreground mt-1">{challenge.statLabel}</div>
                   </div>
                 </div>
-                
+
                 {/* Subtle shadow effect on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               </Card>
@@ -110,7 +110,7 @@ export const ChallengesSection = () => {
             These challenges don't have to define your practice.
           </p>
           <p className="text-muted-foreground">
-            Let MAGLINC handle the administrative burden so you can focus on what matters most.
+            Let CP EVAL PRO handle the administrative burden so you can focus on what matters most.
           </p>
         </div>
       </div>

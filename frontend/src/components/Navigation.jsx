@@ -17,7 +17,7 @@ export const Navigation = () => {
   const navLinks = [
     { label: 'Services', href: '#services' },
     { label: 'Process', href: '#process' },
-    { label: 'Why MAGLINC', href: '#why-maglinc' },
+    { label: 'Why CP EVAL PRO', href: '#why-cp-eval-pro' },
     { label: 'Pricing', href: '#pricing' },
   ];
 
@@ -31,11 +31,10 @@ export const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? 'bg-background/95 backdrop-blur-md shadow-medium'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
@@ -45,8 +44,8 @@ export const Navigation = () => {
               onClick={() => scrollToSection('#hero')}
               className="text-2xl font-bold tracking-tight"
             >
-              <span className="text-primary">MAG</span>
-              <span className="text-accent">LINC</span>
+              <span className="text-primary">CP EVAL </span>
+              <span className="text-secondary">PRO</span>
             </button>
           </div>
 

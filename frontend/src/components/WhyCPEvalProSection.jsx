@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Zap, Award, Target } from 'lucide-react';
 
-export const WhyMaglincSection = () => {
+export const WhyCPEvalProSection = () => {
   const reasons = [
     {
       icon: Zap,
@@ -23,13 +23,13 @@ export const WhyMaglincSection = () => {
       icon: Target,
       title: 'Expertise',
       feature: 'With over 5 years specializing in veteran claims.',
-      benefit: 'MAGLINC offers unparalleled expertise in veteran health evaluations and disability claims.',
+      benefit: 'CP EVAL PRO offers unparalleled expertise in veteran health evaluations and disability claims.',
       stats: ['5+ Years', 'Specialized', 'Veteran-Focused'],
     },
   ];
 
   return (
-    <section id="why-maglinc" className="py-16 md:py-24 bg-background">
+    <section id="why-cp-eval-pro" className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
@@ -37,7 +37,7 @@ export const WhyMaglincSection = () => {
             Why Choose Us
           </Badge>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            Why <span className="text-gradient-primary">MAGLINC</span>?
+            Why <span className="text-gradient-primary">CP EVAL PRO</span>?
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
             Experience the difference that dedication, expertise, and genuine care can make
@@ -105,7 +105,7 @@ export const WhyMaglincSection = () => {
                 Dedicated to Serving Those Who Serve
               </h3>
               <p className="text-lg text-foreground/90 leading-relaxed">
-                MAGLINC understands the critical role C&P examiners play in supporting our nation's
+                CP EVAL PRO understands the critical role C&P examiners play in supporting our nation's
                 veterans. Our mission is to empower you with the tools and support needed to provide
                 exceptional care while maintaining your well-being.
               </p>
