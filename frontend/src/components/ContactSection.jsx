@@ -6,8 +6,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle2, Calendar, FileText, Rocket } from 'lucide-react';
 import { toast } from 'sonner';
-import axios from 'axios';
-
 export const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -30,9 +28,20 @@ export const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+      const scriptUrl = process.env.REACT_APP_GOOGLE_SCRIPT_URL;
 
-      await axios.post(`${backendUrl}/api/contact`, formData);
+      if (!scriptUrl) {
+        throw new Error("Google Script URL is not configured. Please see GOOGLE_APPS_SCRIPT_SETUP.md");
+      }
+
+      await fetch(scriptUrl, {
+        method: "POST",
+        headers: {
+          // Sending as text/plain avoids CORS preflight requests
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify(formData),
+      });
 
       toast.success('Thank you! We\'ll be in touch within 24 hours.');
       setFormData({
