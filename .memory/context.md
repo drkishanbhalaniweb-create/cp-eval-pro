@@ -6,20 +6,27 @@
 ## Project Soul
 
 **What is this project?**
-<!-- Describe the project's purpose, tech stack, and key goals here -->
+CP EVAL PRO — A React (CRA + CRACO) frontend deployed on Vercel. Previously named MAGLINC. Uses TailwindCSS, Radix UI, Lucide icons, and Supabase.
 
 **Key Principles:**
-<!-- List the non-negotiable rules for this codebase -->
+- Deploy target is **Vercel** — all build scripts must be compatible with Vercel's serverless build environment.
+- No tools requiring a browser/Chrome in the build pipeline (Puppeteer, Playwright, etc.) — Vercel does NOT have Chrome system libraries.
+- Use `craco build` as the build command. No postbuild scripts that depend on headless browsers.
 
 ## Key Decisions
 
-<!-- Log architectural decisions, tech choices, and important trade-offs -->
+- **2026-03-13**: Removed `react-snap` (pre-rendering via Puppeteer). Incompatible with Vercel. Static CRA build is sufficient for SEO needs.
+- **2026-03-13**: Adopted "Static HTML Shell" SEO strategy — real, crawlable content is embedded directly inside `<div id="root">` in `index.html`. React hydrates over it. This ensures crawlers see full page content without executing JS, no headless browser needed. Also added FAQPage + Service JSON-LD structured data for rich snippets.
 
 ## Wall of Shame
 
 > ⚠️ These are mistakes that have been made. NEVER repeat them.
 
-<!-- Entries are added via: project-memory log --mistake "description" -->
+1. **[2026-03-13] react-snap / Puppeteer in postbuild breaks Vercel deployment.**
+   - `react-snap` uses Puppeteer which downloads and launches Chromium. Vercel's build environment does NOT have the required shared libraries (`libnss3.so`, etc.).
+   - **NEVER** add `react-snap`, `puppeteer`, `playwright`, or any headless browser tool to the build pipeline.
+   - If pre-rendering/SSR is needed, use a Vercel-native solution (e.g., Next.js ISR) or a headless-browser-free approach.
+   - Error signature: `Failed to launch chrome! ... libnss3.so: cannot open shared object file`
 
 ## Active Tasks
 
