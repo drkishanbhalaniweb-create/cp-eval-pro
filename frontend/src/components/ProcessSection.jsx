@@ -104,7 +104,7 @@ export const ProcessSection = () => {
                     </div>
 
                     {/* Center Icon (Desktop) */}
-                    <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-gradient-primary shadow-elegant items-center justify-center z-10">
+                    <div className="hidden lg:flex absolute left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full gradient-primary shadow-elegant items-center justify-center z-10">
                       <Icon className="w-8 h-8 text-primary-foreground" />
                     </div>
 
@@ -114,7 +114,7 @@ export const ProcessSection = () => {
 
                   {/* Mobile Icon */}
                   <div className="lg:hidden flex items-center justify-center mt-8">
-                    <div className="w-12 h-12 rounded-full bg-gradient-primary shadow-elegant flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full gradient-primary shadow-elegant flex items-center justify-center">
                       <Icon className="w-6 h-6 text-primary-foreground" />
                     </div>
                   </div>

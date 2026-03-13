@@ -1,26 +1,100 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Zap, Award, Target } from 'lucide-react';
+
+// Premium inline SVG icons — no external icon library needed.
+// Each icon is hand-crafted in a duotone / bold style to feel distinctive.
+
+const EfficiencyIcon = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    {/* Lightning bolt — sharp angles, bold weight */}
+    <path
+      d="M19 3L7 18h9l-3 11 14-15h-9L19 3z"
+      fill="currentColor"
+      opacity="0.25"
+    />
+    <path
+      d="M19 3L7 18h9l-3 11 14-15h-9L19 3z"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinejoin="round"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const QualityIcon = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    {/* Medal / award — distinctive shape */}
+    <circle cx="16" cy="12" r="8" fill="currentColor" opacity="0.2" />
+    <circle cx="16" cy="12" r="8" stroke="currentColor" strokeWidth="1.8" />
+    {/* Star inside - perfectly symmetrical */}
+    <path
+      d="M 16 7.3 L 17.01 10.41 L 20.28 10.41 L 17.64 12.33 L 18.65 15.44 L 16 13.52 L 13.35 15.44 L 14.36 12.33 L 11.72 10.41 L 14.99 10.41 Z"
+      fill="currentColor"
+      opacity="0.85"
+    />
+    {/* Ribbon left */}
+    <path
+      d="M11.5 18.5L9 27l7-3 7 3-2.5-8.5"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinejoin="round"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+const ExpertiseIcon = ({ className }) => (
+  <svg
+    className={className}
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    {/* Crosshair / target — precision look */}
+    <circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="1.8" opacity="0.4" />
+    <circle cx="16" cy="16" r="7" stroke="currentColor" strokeWidth="1.8" opacity="0.7" />
+    <circle cx="16" cy="16" r="3" fill="currentColor" />
+    {/* Crosshair lines */}
+    <line x1="16" y1="2" x2="16" y2="7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <line x1="16" y1="25" x2="16" y2="30" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <line x1="2" y1="16" x2="7" y2="16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    <line x1="25" y1="16" x2="30" y2="16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+  </svg>
+);
 
 export const WhyCPEvalProSection = () => {
   const reasons = [
     {
-      icon: Zap,
+      Icon: EfficiencyIcon,
       title: 'Efficiency',
       feature: 'We streamline record reviews, DBQ completion, and medical opinions within 36 hours.',
       benefit: 'Ensuring examiners meet VA deadlines stress-free.',
       stats: ['36h Turnaround', '100% On-Time', 'Zero Delays'],
     },
     {
-      icon: Award,
+      Icon: QualityIcon,
       title: 'Quality',
       feature: 'Our detailed evaluations.',
       benefit: 'Ensure fair assessments, reducing examiner fatigue and errors.',
       stats: ['Detail-Oriented', 'Error-Free'],
     },
     {
-      icon: Target,
+      Icon: ExpertiseIcon,
       title: 'Expertise',
       feature: 'With over 5 years specializing in veteran claims.',
       benefit: 'CP EVAL PRO offers unparalleled expertise in veteran health evaluations and disability claims.',
@@ -47,15 +121,15 @@ export const WhyCPEvalProSection = () => {
 
         {/* Reasons Grid */}
         <div className="grid lg:grid-cols-3 gap-8">
-          {reasons.map((reason, index) => {
-            const Icon = reason.icon;
+          {reasons.map((reason) => {
+            const { Icon } = reason;
             return (
               <Card
                 key={reason.title}
                 className="p-8 hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-border bg-card group"
               >
                 {/* Icon */}
-                <div className="w-16 h-16 rounded-xl bg-gradient-primary shadow-medium flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 rounded-xl gradient-primary shadow-medium flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <Icon className="w-8 h-8 text-primary-foreground" />
                 </div>
 
