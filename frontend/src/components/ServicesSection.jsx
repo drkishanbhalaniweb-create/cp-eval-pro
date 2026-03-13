@@ -2,12 +2,14 @@ import React from 'react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { FileSearch, FileCheck, FileText, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const ServicesSection = () => {
   const services = [
     {
       icon: FileSearch,
       title: 'Pre-screening & Record Review',
+      href: '/services/medical-record-review',
       description: 'Concise medical summaries highlighting critical health issues, delivered before the examination.',
       features: [
         'Comprehensive record analysis',
@@ -21,6 +23,7 @@ export const ServicesSection = () => {
     {
       icon: FileCheck,
       title: 'DBQ Completion',
+      href: '/services/dbq-completion',
       description: 'Fully filled-out DBQs based on examiner findings, adhering to all VA guidelines.',
       features: [
         'VA-compliant documentation',
@@ -34,6 +37,7 @@ export const ServicesSection = () => {
     {
       icon: FileText,
       title: 'Medical Opinions & Addenda',
+      href: '/services/nexus-letters',
       description: 'Thorough, well-supported opinions connecting service-related conditions to current health issues.',
       features: [
         'Evidence-based opinions',
@@ -49,7 +53,6 @@ export const ServicesSection = () => {
   return (
     <section id="services" className="py-16 md:py-24 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <Badge className="mb-4 bg-primary-light text-primary border-primary/20">
             Our Services
@@ -63,7 +66,6 @@ export const ServicesSection = () => {
           </p>
         </div>
 
-        {/* Services Cards */}
         <div className="space-y-8">
           {services.map((service, index) => {
             const Icon = service.icon;
@@ -73,19 +75,19 @@ export const ServicesSection = () => {
                 className="overflow-hidden border-border hover:shadow-large transition-all duration-300"
               >
                 <div className="grid lg:grid-cols-2 gap-8">
-                  {/* Left Side - Service Info */}
                   <div className="p-8 lg:p-10">
                     <div className="flex items-start space-x-4 mb-6">
                       <div className={`w-14 h-14 rounded-xl bg-${service.color}-light flex items-center justify-center flex-shrink-0`}>
                         <Icon className={`w-7 h-7 text-${service.color}`} />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
+                        <Link to={service.href} className="hover:text-primary transition-colors">
+                          <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
+                        </Link>
                         <p className="text-muted-foreground">{service.description}</p>
                       </div>
                     </div>
 
-                    {/* Features */}
                     <div className="space-y-3 mb-6">
                       {service.features.map((feature) => (
                         <div key={feature} className="flex items-center space-x-3">
@@ -95,16 +97,21 @@ export const ServicesSection = () => {
                       ))}
                     </div>
 
-                    {/* Benefit */}
                     <div className={`rounded-lg bg-${service.color}-light/50 p-4 border border-${service.color}/20`}>
                       <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">
                         Key Benefit
                       </div>
                       <p className="text-sm text-foreground leading-relaxed">{service.benefit}</p>
                     </div>
+                    
+                    <div className="mt-6">
+                      <Link to={service.href} className={`text-sm font-bold text-${service.color} hover:underline inline-flex items-center gap-1 group`}>
+                        Learn More About {service.title} 
+                        <Icon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
                   </div>
 
-                  {/* Right Side - Visual/Stats */}
                   <div className="bg-gradient-to-br from-muted/50 to-background p-8 lg:p-10 flex items-center justify-center">
                     <div className="text-center space-y-6">
                       <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-card shadow-medium">

@@ -1,32 +1,32 @@
 import React from 'react';
-import '@/App.css';
-import { Navigation } from '@/components/Navigation';
-import { HeroSection } from '@/components/HeroSection';
-import { ChallengesSection } from '@/components/ChallengesSection';
-import { ServicesSection } from '@/components/ServicesSection';
-import { ProcessSection } from '@/components/ProcessSection';
-import { WhyCPEvalProSection } from '@/components/WhyCPEvalProSection';
-import { PricingSection } from '@/components/PricingSection';
-import { ContactSection } from '@/components/ContactSection';
-import { Footer } from '@/components/Footer';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from '@/pages/Home';
+import MedicalRecordReview from '@/pages/MedicalRecordReview';
+import DBQCompletion from '@/pages/DBQCompletion';
+import NexusLetters from '@/pages/NexusLetters';
+import Resources from '@/pages/Resources';
 import { Toaster } from '@/components/ui/sonner';
+import ScrollToTop from '@/components/ScrollToTop';
+import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <Navigation />
-      <main>
-        <HeroSection />
-        <ChallengesSection />
-        <ServicesSection />
-        <ProcessSection />
-        <WhyCPEvalProSection />
-        <PricingSection />
-        <ContactSection />
-      </main>
-      <Footer />
-      <Toaster position="top-right" />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="App">
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services/medical-record-review" element={<MedicalRecordReview />} />
+          <Route path="/services/dbq-completion" element={<DBQCompletion />} />
+          <Route path="/services/nexus-letters" element={<NexusLetters />} />
+          <Route path="/resources" element={<Resources />} />
+        </Routes>
+        <Footer />
+        <Toaster position="top-right" />
+      </div>
+    </Router>
   );
 }
 

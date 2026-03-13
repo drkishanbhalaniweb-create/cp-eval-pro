@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,19 +24,61 @@ export const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { label: 'Services', href: '#services' },
     { label: 'Process', href: '#process' },
     { label: 'Why CP EVAL PRO', href: '#why-cp-eval-pro' },
     { label: 'Pricing', href: '#pricing' },
+    { label: 'Resources', href: '/resources', isPage: true },
+  ];
+
+  const serviceLinks = [
+    { label: 'Medical Record Review', href: '/services/medical-record-review' },
+    { label: 'DBQ Completion', href: '/services/dbq-completion' },
+    { label: 'Nexus Letters', href: '/services/nexus-letters' },
   ];
 
   const scrollToSection = (href) => {
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: href } });
+      return;
+    }
+
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
       setIsMobileMenuOpen(false);
     }
   };
+
+  useEffect(() => {
+    if (location.pathname === '/' && location.state?.scrollTo) {
+      setTimeout(() => {
+        const element = document.querySelector(location.state.scrollTo);
+        if (element) {
+          const offset = 80;
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = element.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+        // Clear state
+        window.history.replaceState({}, document.title);
+      }, 100);
+    }
+  }, [location]);
 
   return (
     <nav
@@ -40,25 +91,53 @@ export const Navigation = () => {
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <button
-              onClick={() => scrollToSection('#hero')}
+            <Link
+              to="/"
               className="text-2xl font-bold tracking-tight"
             >
               <span className="text-primary">CP EVAL </span>
               <span className="text-secondary">PRO</span>
-            </button>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            <DropdownMenu>
+              <DropdownMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors flex items-center gap-1 focus:outline-none">
+                Services <ChevronDown className="w-4 h-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                {serviceLinks.map((link) => (
+                  <DropdownMenuItem key={link.href} className="cursor-pointer">
+                    <Link to={link.href} className="w-full">
+                      {link.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+                <DropdownMenuItem className="cursor-pointer font-semibold border-t" onClick={() => scrollToSection('#services')}>
+                  View All Services
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-              >
-                {link.label}
-              </button>
+              link.isPage ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <button
+                  key={link.href}
+                  onClick={() => scrollToSection(link.href)}
+                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </button>
+              )
             ))}
           </div>
 
@@ -88,17 +167,45 @@ export const Navigation = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background border-t border-border shadow-large">
-          <div className="px-4 pt-2 pb-4 space-y-2">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className="block w-full text-left px-4 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors"
-              >
-                {link.label}
-              </button>
-            ))}
+        <div className="md:hidden bg-background border-t border-border shadow-large max-h-[90vh] overflow-y-auto">
+          <div className="px-4 pt-2 pb-6 space-y-2">
+            <div className="py-2">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-4 mb-2">Services</p>
+              {serviceLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full text-left px-4 py-2 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            
+            <div className="border-t border-border pt-2">
+              {navLinks.map((link) => (
+                link.isPage ? (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full text-left px-4 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.href}
+                    onClick={() => scrollToSection(link.href)}
+                    className="block w-full text-left px-4 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted rounded-lg transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                )
+              ))}
+            </div>
+
             <Button
               onClick={() => scrollToSection('#contact')}
               className="w-full bg-primary hover:bg-primary-hover transition-smooth mt-4"

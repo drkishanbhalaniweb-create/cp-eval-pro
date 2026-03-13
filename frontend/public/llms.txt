@@ -2,15 +2,20 @@
 > Comprehensive Support for C&P Examiners - Simplifying medical evaluations for efficient disability assessments.
 
 ## Main Services
-- [Nexus Letters](https://cpevalpro.com): We draft comprehensive Nexus Letters linking military service to current medical conditions, ensuring claims are supported by strong medical evidence and rationale.
-- [Medical Record Reviews](https://cpevalpro.com): Detailed analysis of military and private medical records to identify critical evidence, established chronologies, and highlight key information for accurate disability claims.
-- [DBQ Completion](https://cpevalpro.com): Expert assistance in accurately completing Disability Benefit Questionnaires (DBQs), ensuring all VA requirements are met and medical facts are clearly presented.
+- [Nexus Letters](https://cpevalpro.com/services/nexus-letters): We draft comprehensive Nexus Letters linking military service to current medical conditions, ensuring claims are supported by strong medical evidence and rationale.
+- [Medical Record Reviews](https://cpevalpro.com/services/medical-record-review): Detailed analysis of military and private medical records to identify critical evidence, established chronologies, and highlight key information for accurate disability claims.
+- [DBQ Completion](https://cpevalpro.com/services/dbq-completion): Expert assistance in accurately completing Disability Benefit Questionnaires (DBQs), ensuring all VA requirements are met and medical facts are clearly presented.
+
+## Resources
+- [Examiner Knowledge Hub](https://cpevalpro.com/resources): Educational guides, articles, and industry updates for C&P Examiners.
 
 ## Key Facts
 - CP EVAL PRO specializes in supporting C&P (Compensation and Pension) Examiners.
 - We help streamline the evaluation process by handling administrative and documentation tasks.
 - Our services are designed to improve the accuracy and efficiency of veteran disability assessments.
-- We ensure compliance with VA guidelines and regulations.
+- We ensure compliance with VA guidelines, M21-1 Adjudication Procedures, and all VA formatting requirements.
+- Our team offers a 24-36 hour turnaround on DBQ completion.
+- All medical opinions are evidence-based, citing established medical literature.
 
 ## Contact Information
 - Website: https://cpevalpro.com

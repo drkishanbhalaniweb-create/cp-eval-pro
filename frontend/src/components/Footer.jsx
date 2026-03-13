@@ -1,8 +1,32 @@
 import React from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Separator } from '@/components/ui/separator';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (href) => {
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: href } });
+      return;
+    }
+
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <footer className="bg-accent text-accent-foreground">
@@ -10,10 +34,10 @@ export const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <div className="text-2xl font-bold mb-4">
+            <Link to="/" className="text-2xl font-bold mb-4 block">
               <span className="text-primary-foreground">CP EVAL </span>
               <span className="text-secondary">PRO</span>
-            </div>
+            </Link>
             <p className="text-sm text-accent-foreground/80 leading-relaxed">
               Comprehensive support for C&P examiners, simplifying medical evaluations
               for efficient disability assessments.
@@ -26,32 +50,32 @@ export const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <button
-                  onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="text-accent-foreground/80 hover:text-accent-foreground transition-colors"
+                  onClick={() => scrollToSection('#services')}
+                  className="text-accent-foreground/80 hover:text-accent-foreground transition-colors text-left"
                 >
                   Our Services
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => document.querySelector('#process')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="text-accent-foreground/80 hover:text-accent-foreground transition-colors"
+                  onClick={() => scrollToSection('#process')}
+                  className="text-accent-foreground/80 hover:text-accent-foreground transition-colors text-left"
                 >
                   Our Process
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => document.querySelector('#why-cp-eval-pro')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="text-accent-foreground/80 hover:text-accent-foreground transition-colors"
+                  onClick={() => scrollToSection('#why-cp-eval-pro')}
+                  className="text-accent-foreground/80 hover:text-accent-foreground transition-colors text-left"
                 >
                   Why CP EVAL PRO
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => document.querySelector('#pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="text-accent-foreground/80 hover:text-accent-foreground transition-colors"
+                  onClick={() => scrollToSection('#pricing')}
+                  className="text-accent-foreground/80 hover:text-accent-foreground transition-colors text-left"
                 >
                   Pricing
                 </button>
@@ -63,10 +87,26 @@ export const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4 text-accent-foreground">Our Services</h4>
             <ul className="space-y-2 text-sm text-accent-foreground/80">
-              <li>Pre-screening & Record Review</li>
-              <li>DBQ Completion</li>
-              <li>Medical Opinions</li>
-              <li>VA Addendum Responses</li>
+              <li>
+                <Link to="/services/medical-record-review" className="hover:text-accent-foreground transition-colors">
+                  Pre-screening & Record Review
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/dbq-completion" className="hover:text-accent-foreground transition-colors">
+                  DBQ Completion
+                </Link>
+              </li>
+              <li>
+                <Link to="/services/nexus-letters" className="hover:text-accent-foreground transition-colors">
+                  Medical Opinions & Nexus Letters
+                </Link>
+              </li>
+              <li>
+                <button onClick={() => scrollToSection('#contact')} className="hover:text-accent-foreground transition-colors text-left">
+                  VA Addendum Responses
+                </button>
+              </li>
             </ul>
           </div>
         </div>
